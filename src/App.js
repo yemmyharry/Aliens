@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment, useState } from "react";
+import { Grid, AppBar } from "@material-ui/core";
+import UserTable from "./UserTable";
+import FormInput from "./FormInput";
 
-function App() {
+const App = () => {
+  const UserState = [
+    // {
+    //   firstName: "John",
+    //   lastName: "Wick",
+    //   birthday: "01/01/1987",
+    //   age:50,
+    //   hobby: "Dog petting"
+    // }
+  ];
+  const [users, setUser] = useState(UserState);
+
+  const addUser = user => {
+    setUser([...users, user]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+     <AppBar >
+       <h4>My User Update table</h4>
+     </AppBar> <br/> <br/> <br/><br/>
+      <Grid container>
+        <FormInput addUser={addUser}/>
+        <UserTable users={users}/>
+      </Grid>
+    </Fragment>
   );
-}
+};
 
 export default App;
