@@ -1,7 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
+
 import { Paper, TableHead, TableBody, TableRow, TableCell } from "@material-ui/core";
 
 const UserTable = props => {
+  const users = useSelector(state => state.users)
   return (
     <Paper style={{ padding: 20, margin: 35, width: 500 }}>
       <TableHead>
@@ -15,7 +18,7 @@ const UserTable = props => {
       </TableHead>
       <TableBody>
       {
-          props.users.map(item=>{
+          users.map(item=>{
               return (
                 <TableRow>
                 <TableCell>{item.firstName}</TableCell>

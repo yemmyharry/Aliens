@@ -21,7 +21,13 @@ const FormInput = props => {
     e.preventDefault();
     if (user.firstName && user.lastName && user.birthday) {
       setUser(initialFormState);
-      return props.addUser(user);
+      props.onSubmit({
+        firstName: user.firstName,
+        lastName: user.lastName,
+        birthday: user.birthday,
+        age: user.age,
+        hobby: user.hobby
+      });
     }
   };
 
