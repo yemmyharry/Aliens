@@ -1,16 +1,20 @@
 import React, { useState } from "react";
+import { useDispatch } from 'react-redux';
 import { Grid, TextField, Paper, Button } from "@material-ui/core";
+import {newUser, loadUsers} from './userAction'
+// import addUserAsync from "./actions/addUserAsync"
+
 
 const FormInput = props => {
   const initialFormState = {
-    firstName: "",
+    firstName: '',
     lastName: "",
     birthday: "",
     age: '',
     hobby: ""
   };
   const [user, setUser] = useState(initialFormState);
-
+  const dispatch = useDispatch()
   const handleInput = e => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
@@ -21,13 +25,14 @@ const FormInput = props => {
     e.preventDefault();
     if (user.firstName && user.lastName && user.birthday) {
       setUser(initialFormState);
-      props.onSubmit({
+      (props.onSubmit({
         firstName: user.firstName,
         lastName: user.lastName,
         birthday: user.birthday,
         age: user.age,
         hobby: user.hobby
-      });
+      }));
+      dispatch(loadUsers())
     }
   };
 

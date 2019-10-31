@@ -1,8 +1,13 @@
+import { LOAD_USERS } from "./userAction";
+
 const userInitialState = [];
 export default (state = userInitialState, action) => {
-    switch (action.type) {
-        case 'NEW_USER':
-            return [...state, action.users];
-            default: return state;
-    }
+  switch (action.type) {
+    case LOAD_USERS:
+      return [...state, action.users];
+    case "NEW_USER":
+      return [...state, action.users];
+    default:
+      return state;
+  }
 };

@@ -14,3 +14,12 @@ export const newUser = ({
          hobby 
         }      
 }); 
+
+export const LOAD_USERS = 'LOAD_USERS';
+export const RENDER_USERS = 'RENDER_USERS';
+
+export function loadUsers() {
+    return {
+      type: LOAD_USERS
+    };
+  }

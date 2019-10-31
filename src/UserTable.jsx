@@ -1,14 +1,28 @@
-import React from "react";
-import { useSelector } from "react-redux";
-
-import { Paper, TableHead, TableBody, TableRow, TableCell } from "@material-ui/core";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+// import axios from "axios";
+import { loadUsers } from "./userAction";
+import {
+  Paper,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell
+} from "@material-ui/core";
 
 const UserTable = props => {
-  const users = useSelector(state => state.users)
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadUsers());
+  }, []);
+  let users = useSelector(state => state.users);
+  let muser = users.flat()
+  console.log(users);
   return (
     <Paper style={{ padding: 20, margin: 35, width: 500 }}>
       <TableHead>
         <TableRow>
+          <TableCell>USER ID</TableCell>
           <TableCell>First Name</TableCell>
           <TableCell>Last Name</TableCell>
           <TableCell>Birthday</TableCell>
@@ -17,19 +31,22 @@ const UserTable = props => {
         </TableRow>
       </TableHead>
       <TableBody>
-      {
-          users.map(item=>{
-              return (
-                <TableRow>
+        {muser.map((item, index) => {
+          console.log(item);
+          if (item == null) {
+          } else {
+            return (
+              <TableRow key={index}>
+                <TableCell>{item.userId}</TableCell>
                 <TableCell>{item.firstName}</TableCell>
                 <TableCell>{item.lastName}</TableCell>
                 <TableCell>{item.birthday}</TableCell>
                 <TableCell>{item.age}</TableCell>
                 <TableCell>{item.hobby}</TableCell>
               </TableRow>
-              )
-          })
-      }
+            );
+          }
+        })}
       </TableBody>
     </Paper>
   );
