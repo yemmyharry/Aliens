@@ -11,10 +11,7 @@ import {
 } from "@material-ui/core";
 
 const UserTable = props => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(loadUsers());
-  }, []);
+
   let users = useSelector(state => state.users);
   let muser = users.flat()
   console.log(users);

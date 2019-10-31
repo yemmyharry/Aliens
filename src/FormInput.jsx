@@ -32,7 +32,6 @@ const FormInput = props => {
         age: user.age,
         hobby: user.hobby
       }));
-      dispatch(loadUsers())
     }
   };
 
