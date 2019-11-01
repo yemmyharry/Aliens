@@ -16,10 +16,10 @@ export const newUser = ({
 }); 
 
 export const LOAD_USERS = 'LOAD_USERS';
-export const RENDER_USERS = 'RENDER_USERS';
 
-export function loadUsers() {
+export const loadUsers=users=> {
     return {
-      type: LOAD_USERS
+      type: LOAD_USERS,
+      users: users
     };
   }
